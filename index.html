@@ -84,6 +84,7 @@
             var code = e.keyCode;
             if(code==65||code==83||code==68||code==70||code==71||code==72||code==74||code==75||code==76){
             document.getElementById('key'+code).setAttribute('class','light')
+            document.getElementById('audio'+code).load()
             document.getElementById('audio'+code).play()
             }
         })
@@ -92,7 +93,7 @@
             var code = e.keyCode;
             if(code==65||code==83||code==68||code==70||code==71||code==72||code==74||code==75||code==76){
             document.getElementById('key'+code).setAttribute('class','item')
-            document.getElementById('audio'+code).load()
+            // document.getElementById('audio'+code).load()
 
             }         
 
