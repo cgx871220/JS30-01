@@ -4,98 +4,105 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>d01</title>
+    <title>Document</title>
     <link rel='preconnect' href='https://fonts.gstatic.com'>
-    <link href='https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap' rel='stylesheet'>
-    
+    <link href='https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap' rel='stylesheet'>  
     <style>
         *{
-            margin: 0;padding: 0;
-            font-family: 'Noto Sans', sans-serif;
+            margin: 0;padding: 0;font-family: 'Noto Sans', sans-serif;font-weight: 900;
         }
         html,body{
-            height: 100%;width: 100%;
-            background:url('./sounds/b9r5sEL.jpg')
+            width: 100%;height: 100%;
         }
         body{
+            background: url(./sounds/b9r5sEL.jpg);
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center
         }
         .wrap{
             width: 1200px;
             display: flex;
             justify-content: space-around;
         }
-        .item{
-            width: 100px;
-            height: 100px;
-            color:#fff;
-            background-color: rgba(0, 0, 0, .7);
-            border:#000 5px solid;
-            font-size: 50px;
+        span{
+            width: 100px;height: 100px;
+            border: 10px rgb(255, 255, 255) solid;
             line-height: 100px;
+            color: #fff;
+            font-size: 60px;
             text-align: center;
-            transition: .2s;
-            box-shadow: 0 0 0 0 transparent;
+            transition: .3s;
+            border-radius: 15px;
+            transform: translateY(0%);
+            cursor: pointer;
         }
-        .light{
-            width: 100px;
-            height: 100px;
-            color:#fff;
-            background-color: rgba(0, 0, 0, .7);
-            border:#000 5px solid;
-            font-size: 50px;
-            line-height: 100px;
-            text-align: center;
-            box-shadow: 0 0 0 0;
-            transition: .2s;
-            box-shadow: 0 0 1px 5px #fa0;
+        .iteming{
+            border: 15px orange solid;
+            color: orange;
+            transform: translateY(-10%);            
         }
     </style>
 </head>
 <body>
     <div class="wrap">
-        <div class="item" id="key65">A</div>
-        <div class="item" id="key83">S</div>
-        <div class="item" id="key68">D</div>
-        <div class="item" id="key70">F</div>
-        <div class="item" id="key71">G</div>
-        <div class="item" id="key72">H</div>
-        <div class="item" id="key74">J</div>
-        <div class="item" id="key75">K</div>
-        <div class="item" id="key76">L</div>
+        <span  id="item65">A</span>
+        <span  id="item83">S</span>
+        <span  id="item68">D</span>
+        <span  id="item70">F</span>
+        <span  id="item71">G</span>
+        <span  id="item72">H</span>
+        <span  id="item74">J</span>
+        <span  id="item75">K</span>
+        <span  id="item76">L</span>
     </div>
+    <audio src="./sounds/boom.wav" class="item65" id="audio65"></audio>
+    <audio src="./sounds/clap.wav" class="item83" id="audio83"></audio>
+    <audio src="./sounds/hihat.wav" class="item68" id="audio68"></audio>
+    <audio src="./sounds/kick.wav" class="item70" id="audio70"></audio>
+    <audio src="./sounds/openhat.wav" class="item71" id="audio71"></audio>
+    <audio src="./sounds/ride.wav" class="item72" id="audio72"></audio>
+    <audio src="./sounds/snare.wav" class="item74" id="audio74"></audio>
+    <audio src="./sounds/tink.wav" class="item75" id="audio75"></audio>
+    <audio src="./sounds/tom.wav" class="item76" id="audio76"></audio>
 
-        <audio id="audio65" src="./sounds/boom.wav"></audio>
-        <audio id="audio83" src="./sounds/clap.wav"></audio>
-        <audio id="audio68" src="./sounds/hihat.wav"></audio>
-        <audio id="audio70" src="./sounds/kick.wav"></audio>
-        <audio id="audio71" src="./sounds/openhat.wav"></audio>
-        <audio id="audio72" src="./sounds/ride.wav"></audio>
-        <audio id="audio74" src="./sounds/snare.wav"></audio>
-        <audio id="audio75" src="./sounds/tink.wav"></audio>
-        <audio id="audio76" src="./sounds/tom.wav"></audio>
+
 
 
     <script>
         window.addEventListener('keydown',function(e){
+            let code = e.keyCode
             
-            var code = e.keyCode;
             if(code==65||code==83||code==68||code==70||code==71||code==72||code==74||code==75||code==76){
-            document.getElementById('key'+code).setAttribute('class','light')
-            document.getElementById('audio'+code).load()
-            document.getElementById('audio'+code).play()
+            document.querySelector(`${'#item'+code}`).setAttribute('class','iteming');
+            document.querySelector(`${'#audio'+code}`).load();
+            document.querySelector(`${'#audio'+code}`).play();
             }
         })
 
-        window.addEventListener('keyup',function(e){
-            var code = e.keyCode;
-            if(code==65||code==83||code==68||code==70||code==71||code==72||code==74||code==75||code==76){
-            document.getElementById('key'+code).setAttribute('class','item')
-            }         
 
+        window.addEventListener('keyup',function(e){
+            let code = e.keyCode
+            if(code==65||code==83||code==68||code==70||code==71||code==72||code==74||code==75||code==76){
+                document.querySelector(`${'#item'+code}`).setAttribute('class','');
+            }
         })
+
+        
+
+
+        document.addEventListener('mousedown',function(e){
+            let code = e.target.id
+            if(code=='item65'||code=='item83'||code=='item68'||code=='item70'||code=='item71'||code=='item72'||code=='item74'||code=='item75'||code=='item76'){
+                 document.querySelector('#'+code).setAttribute('class','iteming');
+                 document.querySelector(`${'.'+code}`).load()
+                 document.querySelector(`${'.'+code}`).play()
+            }
+        })
+        document.addEventListener('mouseup',function(e){
+            document.querySelector('.iteming').setAttribute('class','')
+        })
+
     </script>
 </body>
 </html>
